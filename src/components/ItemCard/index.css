@@ -1,0 +1,159 @@
+.ic-con {
+  border: 1px solid gray;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  box-shadow: 1px 1px 1px 1px ghostwhite;
+  list-style-type: none;
+  padding: 0px;
+}
+.ic-con1 {
+  display: flex;
+}
+.ic-con2 {
+  font-family: 'Roboto';
+}
+.dish-name {
+  font-size: 15px;
+  font-weight: 800;
+}
+.dish-price {
+  font-size: 12px;
+  font-weight: 600;
+}
+.dish-desc {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.btn-con1 {
+  display: flex;
+  align-items: center;
+}
+
+.ic-btn-con {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: green;
+  color: white;
+  border-radius: 40px;
+  font-family: 'Roboto';
+  width: 120px;
+  height: 50px;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-bottom: 10px;
+}
+.in-de-btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+.qty {
+  font-size: 15px;
+  font-weight: 500;
+}
+.dna {
+  font-size: 20px;
+  font-weight: 400;
+  color: red;
+}
+.cus {
+  font-size: 12px;
+  font-weight: 600;
+  color: blue;
+}
+.calo {
+  font-size: 12px;
+  font-weight: 700;
+  color: orange;
+}
+.ic-con3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dish-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
+.veg-non {
+  margin-top: 20px;
+  font-size: 30px;
+}
+
+.plmi {
+  font-size: 15px;
+  background-color: green;
+  color: antiquewhite;
+}
+
+.button {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 10px;
+  font-weight: 600;
+  background-color: #3b82f6;
+  border: none;
+  border-radius: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  outline: none;
+  cursor: pointer;
+}
+
+.add-to-cart-btn {
+  font-size: 12px;
+  margin-left: 15px;
+}
+.add-to-cart-btn:hover {
+  background-color: green;
+}
+
+@media screen and (min-width: 768px) {
+  .add-to-cart-btn {
+    font-size: 14px;
+    margin-bottom: 48px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .ic-con {
+    width: 90%;
+    padding: 10px;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  .dish-name {
+    font-size: 30px;
+  }
+  .dish-price {
+    font-size: 20px;
+  }
+  .dish-desc {
+    font-size: 15px;
+  }
+  .cus {
+    font-size: 20px;
+  }
+  .calo {
+    font-size: 30px;
+  }
+  .dish-img {
+    width: 100px;
+    height: 100px;
+    margin-left: 10px;
+  }
+}
