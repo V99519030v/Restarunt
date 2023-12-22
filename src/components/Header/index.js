@@ -1,50 +1,49 @@
-/* eslint-disable import/extensions */
 import {Link, withRouter} from 'react-router-dom'
-import {AiOutlineShoppingCart} from 'react-icons/ai'
-import Cookies from 'js-cookie'
-import CartContext from '../CartContext'
+import Cookie from 'js-cookie'
 
+// import {AiOutlineShoppingCart} from 'react-icons/ai'
 import './index.css'
+import CartContext from '../../Context/CartContext'
 
-const Header = props => (
-  <CartContext.Consumer>
-    {context => {
-      const {cartList} = context
-      const onLogout = () => {
-        Cookies.remove('jwt_token')
-        const {history} = props
-        history.replace('/login')
-      }
-
-      const {restaurantName} = props
-      const {match} = props
-      const {path} = match
-      // const chosenHome = path === '/' ? 'chosenLink' : null
-      const chosenCart = path === '/cart' ? 'chosenLink' : null
-      return (
-        <div className="bg-container">
-          <Link to="/" className="link">
-            <h1 className="heading">{restaurantName}</h1>
-          </Link>
-          <div className="card_container">
-            <p className="my_order">My Orders</p>
-            <Link
-              to={{pathname: '/cart', state: restaurantName}}
-              className="link"
-            >
-              <button type="button" className="cartButton">
-                <AiOutlineShoppingCart className={`icon_cart ${chosenCart}`} />
-              </button>
+const Header = props => {
+  const onLogoutButtonClick = () => {
+    Cookie.remove('jwt_token')
+    const {history} = props
+    history.replace('/login')
+  }
+  return (
+    <CartContext.Consumer>
+      {value => {
+        const {cartList} = value
+        return (
+          <nav className="navbar">
+            <Link to="/" className="nav-link-item">
+              <h1>UNI Resto Cafe</h1>
             </Link>
-            <p className="background">{cartList.length}</p>
-            <button type="button" className="buttonLogout" onClick={onLogout}>
-              Logout
-            </button>
-          </div>
-        </div>
-      )
-    }}
-  </CartContext.Consumer>
-)
-
+            <div className="cart-container">
+              <p className="para">My Orders</p>
+              <button
+                type="button"
+                className="logout-button"
+                onClick={onLogoutButtonClick}
+              >
+                Logout
+              </button>
+              <Link to="/cart" className="nav-link-item">
+                <button type="button" className="cart-icon-button">
+                  <img
+                    src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-cart-icon.png"
+                    alt="nav cart"
+                    className="cart"
+                  />
+                </button>
+              </Link>
+              <p className="count">{cartList.length}</p>
+            </div>
+          </nav>
+        )
+      }}
+    </CartContext.Consumer>
+  )
+}
 export default withRouter(Header)

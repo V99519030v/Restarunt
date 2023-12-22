@@ -1,56 +1,68 @@
-import {useContext} from 'react'
-import {FaRegTrashAlt} from 'react-icons/fa'
+import CartContext from '../../Context/CartContext'
 
-import CartContext from '../CartContext'
+const CartItem = props => (
+  <CartContext.Consumer>
+    {value => {
+      const {
+        removeCartItem,
+        incrementCartItemQuantity,
+        decrementCartItemQuantity,
+      } = value
+      const {cartItemDetails} = props
+      const {
+        dishId,
+        dishName,
+        quantity,
+        dishPrice,
+        dishImage,
+        dishCurrency,
+      } = cartItemDetails
+      const onClickDecrement = () => {
+        decrementCartItemQuantity(dishId)
+      }
+      const onClickIncrement = () => {
+        incrementCartItemQuantity(dishId)
+      }
+      const onRemoveCartItem = () => {
+        removeCartItem(dishId)
+      }
+      const totalPrice = dishPrice * quantity
 
-const CartItem = ({cartItemDetails}) => {
-  const {
-    dishId,
-    dishName,
-    dishImage,
-    quantity,
-    dishCurrency,
-    dishPrice,
-  } = cartItemDetails
-  const {
-    incrementCartItemQuantity,
-    decrementCartItemQuantity,
-    removeCartItem,
-  } = useContext(CartContext)
-
-  const onIncreaseQty = () => incrementCartItemQuantity(dishId)
-
-  const onDecreaseQty = () => decrementCartItemQuantity(dishId)
-
-  const onRemoveCartItem = () => removeCartItem(dishId)
-
-  return (
-    <li className="cart-item-container">
-      <img className="cart-item-image" src={dishImage} alt={dishName} />
-      <div className="cart-item-details">
-        <p className="cart-item-name mb-1">{dishName}</p>
-        <p className="dish-currency-price mt-0 mb-2">
-          {dishCurrency} {(quantity * dishPrice).toFixed(2)}
-        </p>
-        <div className="control-btn-group">
-          <button type="button" className="control-btn" onClick={onDecreaseQty}>
-            -
+      return (
+        <li className="cart-item">
+          <img className="cart-product-image" src={dishImage} alt={dishName} />
+          <p className="cart-product-title">{dishName}</p>
+          <div className="cart-quantity-container">
+            <button
+              type="button"
+              className="cart-sign-button"
+              onClick={onClickDecrement}
+            >
+              -
+            </button>
+            <p className="cart-sign">{quantity}</p>
+            <button
+              type="button"
+              className="cart-sign-button"
+              onClick={onClickIncrement}
+            >
+              +
+            </button>
+          </div>
+          <p className="cart-total-price">
+            {dishCurrency} {totalPrice}
+          </p>
+          <button
+            className="remove-btn"
+            type="button"
+            onClick={onRemoveCartItem}
+          >
+            Remove All
           </button>
-          <p className="cart-item-quantity">{quantity}</p>
-          <button type="button" className="control-btn" onClick={onIncreaseQty}>
-            +
-          </button>
-        </div>
-      </div>
-      <button
-        type="button"
-        className="remove-btn text-danger align-self-center"
-        onClick={onRemoveCartItem}
-      >
-        <FaRegTrashAlt />
-      </button>
-    </li>
-  )
-}
+        </li>
+      )
+    }}
+  </CartContext.Consumer>
+)
 
 export default CartItem
